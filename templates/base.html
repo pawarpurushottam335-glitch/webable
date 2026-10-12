@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}WebAble{% endblock %} – Web Accessibility Analyzer</title>
+<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='webable_icon.svg') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+{% if user_email %}
+<header class="nav"><div class="wrap nav-in">
+  <a class="brand" href="{{ url_for('dashboard') }}"><img class="logo" src="{{ url_for('static', filename='webable_icon.svg') }}" alt="WebAble logo"><b>Web<span>Able</span></b></a>
+  <nav aria-label="Main navigation" class="links">
+    <a href="{{ url_for('dashboard') }}">Home</a>
+    <a href="{{ url_for('dashboard') }}#analyzer">Analyzer</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('help_page') }}">Help</a>
+  </nav>
+  <div class="user"><span title="{{ user_email }}">{{ user_name }}</span>
+    <form method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button class="btn small ghost">Logout</button></form></div>
+</div></header>
+{% endif %}
+<main id="main" class="{{ 'wrap' if user_email else 'auth-bg' }}">
+  <div class="flashes" role="status" aria-live="polite">
+  {% for cat, msg in get_flashed_messages(with_categories=true) %}<div class="flash {{ cat }}">{{ msg }}</div>{% endfor %}
+  </div>
+  {% block content %}{% endblock %}
+</main>
+<footer class="foot">WebAble – BSc Computer Science Final Year Project</footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}{% block title %}Results{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>Accessibility Report</h1>
+  <p><strong>Website URL:</strong> <a href="{{ r.url }}" target="_blank" rel="noopener noreferrer">{{ r.url }}</a><br>
+  <strong>Analysis date/time:</strong> {{ r.checked_at }}</p>
+  <div class="score {{ 'good' if r.score >= 80 else 'mid' if r.score >= 50 else 'bad' }}">
+    <svg viewBox="0 0 36 36" class="gauge" aria-hidden="true"><path class="trk" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"/>
+    <path class="prg" stroke-dasharray="{{ r.score }}, 100" d="M18 2.0845a15.9155 15.9155 0 0 1 0 31.831a15.9155 15.9155 0 0 1 0-31.831"/></svg>
+    <span>Accessibility Score<small>WCAG 2.1 checks</small></span><b>{{ r.score }} / 100</b>
+  </div>
+  <div class="grid4">
+    <div class="stat"><b>{{ r.total }}</b>Total Checks</div>
+    <div class="stat ok"><b>{{ r.passed }}</b>Passed</div>
+    <div class="stat warn"><b>{{ r.warnings }}</b>Warnings</div>
+    <div class="stat fail"><b>{{ r.failed }}</b>Failed</div>
+  </div>
+</section>
+{% if r.images %}
+<section class="card" id="imgs"><div class="tabs"><h2>Image Diagnostic Items ({{ r.images|length }})</h2>
+  <div role="group" aria-label="Filter images"><button class="tab on" data-f="all">All</button><button class="tab" data-f="failed">Failed</button><button class="tab" data-f="warning">Warnings</button><button class="tab" data-f="passed">Passed</button></div></div>
+  <ul class="imglist">{% for i in r.images %}<li data-s="{{ i.status }}"><img src="{{ i.src }}" alt="" loading="lazy" referrerpolicy="no-referrer">
+    <div><span class="badge {{ i.status }}">{% if i.status == 'passed' %}✓ Passed{% elif i.status == 'warning' %}⚠ Warning{% else %}✗ Failed{% endif %}</span>
+    <p>{{ i.note }}</p><small class="muted">{{ i.src[:90] }}</small></div></li>{% endfor %}</ul></section>
+<script>
+document.querySelectorAll('.tab').forEach(function(b){b.onclick=function(){
+ document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+ document.querySelectorAll('.imglist li').forEach(function(li){li.hidden=b.dataset.f!=='all'&&li.dataset.s!==b.dataset.f});}});
+</script>
+{% endif %}
+<h2>Detailed Results</h2>
+{% for c in r.checks %}
+<article class="card check {{ c.status }}">
+  <header><h3>{{ c.name }}</h3>
+    <span class="badge {{ c.status }}">{% if c.status == 'passed' %}✓ Passed{% elif c.status == 'warning' %}⚠ Warning{% else %}✗ Failed{% endif %}</span></header>
+  <p class="muted">{{ c.found }}</p>
+  {% if c.issue %}
+  <dl>
+    <dt>Issue</dt><dd>{{ c.issue }}</dd>
+    <dt>What is wrong</dt><dd>{{ c.wrong }}</dd>
+    <dt>Why it matters</dt><dd>{{ c.why }}</dd>
+    <dt>How to fix</dt><dd>{{ c.fix }}</dd>
+    <dt>Example code</dt><dd><pre><code>{{ c.code }}</code></pre></dd>
+  </dl>
+  {% endif %}
+</article>
+{% endfor %}
+<p><a class="btn" href="{{ url_for('dashboard') }}#analyzer">Analyze another website</a></p>
+{% endblock %}

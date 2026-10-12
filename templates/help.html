@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Help{% endblock %}
+{% block content %}
+<section class="card"><h1>Help</h1>
+<ol><li>Enter a public website URL (for example <code>https://example.com</code>).</li>
+<li>Click <strong>Analyze Website</strong>.</li>
+<li>Review the score and each check. Failed and warning items include a fix and example code.</li></ol>
+<h2>Troubleshooting</h2><ul>
+<li><strong>Could not connect</strong> – check the address and your internet connection.</li>
+<li><strong>Only public websites</strong> – localhost and private network addresses are blocked.</li>
+<li><strong>Not HTML</strong> – the URL must point to a web page, not a file.</li></ul></section>
+{% endblock %}

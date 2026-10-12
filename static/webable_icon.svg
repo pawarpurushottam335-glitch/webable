@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" role="img" aria-label="WebAble">
+  <defs><clipPath id="s"><path d="M60 8 L112 27 V68 C112 99 89 119 60 132 C31 119 8 99 8 68 V27 Z"/></clipPath></defs>
+  <path d="M60 8 L112 27 V68 C112 99 89 119 60 132 C31 119 8 99 8 68 V27 Z" fill="#1d4ed8"/>
+  <g clip-path="url(#s)"><path d="M60 0 H120 V140 H60 Z" fill="#14b8a6"/></g>
+  <path d="M31 47 L44 94 L60 63 L76 94 L89 47" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

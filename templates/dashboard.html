@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="hero" id="analyzer">
+  <h1>Make Your Website More Accessible</h1>
+  <p>Analyze your website and identify common accessibility issues with simple explanations and practical fixes.</p>
+  <form method="post" action="{{ url_for('analyze_view') }}" class="url-form">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="url" class="sr">Website URL</label>
+    <input id="url" name="url" type="text" inputmode="url" placeholder="https://example.com" value="{{ url or '' }}" required>
+    <button class="btn big" id="go">Analyze Website</button>
+  </form>
+  <p class="muted tiny">Try https://example.com or https://www.wikipedia.org</p>
+</section>
+<section class="grid3">
+  <div class="card"><h2>🔍 Real Analysis</h2><p>Your page's HTML is downloaded and parsed live with BeautifulSoup.</p></div>
+  <div class="card"><h2>📋 8 Checks</h2><p>Title, ALT text, headings, links, buttons, form labels and language.</p></div>
+  <div class="card"><h2>🛠 Fix Suggestions</h2><p>Every problem comes with an explanation and ready-to-use code.</p></div>
+</section>
+<script>
+document.querySelector('.url-form').addEventListener('submit', function(){
+  var b=document.getElementById('go'); b.textContent='Analyzing…'; b.disabled=true; });
+</script>
+{% endblock %}

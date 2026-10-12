@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Login{% endblock %}
+{% block content %}
+<section class="card auth">
+  <div class="auth-brand"><img class="logo" src="{{ url_for('static', filename='webable_icon.svg') }}" alt="WebAble logo"><h1>Web<span class="accent">Able</span></h1></div><p class="muted">Login to your account</p>
+  <form method="post" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label for="email">Email Address</label>
+    <input id="email" name="email" type="email" value="{{ email or '' }}" autocomplete="email" required>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+    <button class="btn block">Login</button>
+  </form>
+  <p class="alt">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+</section>
+{% endblock %}

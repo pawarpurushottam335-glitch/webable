@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}About{% endblock %}
+{% block content %}
+<section class="card"><h1>About WebAble</h1>
+<p>WebAble is a web accessibility analyzer built as a BSc Computer Science final year project. It fetches a public web page, parses its HTML and reports common barriers for people who use screen readers or keyboards.</p>
+<h2>Technology</h2><ul><li>Python &amp; Flask</li><li>BeautifulSoup &amp; Requests</li><li>SQLite with hashed passwords</li></ul>
+<p class="muted">Automated checks cover only part of WCAG. Always combine them with manual testing.</p></section>
+{% endblock %}
