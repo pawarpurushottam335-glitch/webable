@@ -8,6 +8,7 @@
     <input id="email" name="email" type="email" value="{{ email or '' }}" autocomplete="email" required>
     <label for="password">Password</label>
     <input id="password" name="password" type="password" autocomplete="current-password" required>
+    <p class="forgot"><a href="{{ url_for('forgot_password') }}">Forgot password?</a></p>
     <button class="btn block">Login</button>
   </form>
   <p class="alt">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>

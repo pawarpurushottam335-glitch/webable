@@ -62,3 +62,5 @@ input[type=text],input[type=email],input[type=password]{background:#111827;borde
 .brand{display:flex;align-items:center;gap:.6rem}.brand b{font-size:1.3rem}
 .auth-brand{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin-bottom:.3rem}
 .auth-brand .logo{height:80px;width:auto}
+
+.forgot{text-align:right;margin:.5rem 0 0;font-size:.9rem}

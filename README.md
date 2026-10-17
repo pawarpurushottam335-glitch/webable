@@ -2,7 +2,7 @@
 BSc Computer Science final year project. Flask + BeautifulSoup + SQLite.
 
 ## Features
-- Register / login / logout (hashed passwords, CSRF protection, protected dashboard)
+- Register / login / logout / forgot password (time-limited reset link) (hashed passwords, CSRF protection, protected dashboard)
 - Real analysis of any public URL: title, image ALT, H1, heading order, links, buttons, form labels, page language
 - Score, summary cards, and per-issue explanation with fix and example code
 - Blocks localhost/private addresses (SSRF protection)
